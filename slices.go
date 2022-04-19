@@ -71,6 +71,7 @@ func Join[T fmt.Stringer](s []T, sep string) string {
 	return v
 }
 
+// Contain returns if s contains e.
 func Contain[T comparable](s []T, e T) bool {
 
 	for i := range s {
