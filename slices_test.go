@@ -129,3 +129,14 @@ func TestContainBuiltin(t *testing.T) {
 		t.Fatalf("FAILED!")
 	}
 }
+
+func TestStringsUser(t *testing.T) {
+
+	a := []Test{{0, 0}, {1, 1}, {2, 2}, {3, 3}, {4, 4}}
+
+	b := Strings(a)
+
+	if b[0] != "0|0" {
+		t.Fatalf("FAILED!")
+	}
+}

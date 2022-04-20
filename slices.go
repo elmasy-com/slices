@@ -82,3 +82,15 @@ func Contain[T comparable](s []T, e T) bool {
 
 	return false
 }
+
+// Strings convert a slice of T to a string slice. If s is nil, returns nil.
+func Strings[T fmt.Stringer](s []T) []string {
+
+	var v []string
+
+	for i := range s {
+		v = append(v, s[i].String())
+	}
+
+	return v
+}
