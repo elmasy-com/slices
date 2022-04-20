@@ -22,7 +22,7 @@ func Copy[T any](s []T) []T {
 // RemoveElem removes element e from s.
 func RemoveElem[T comparable](s []T, e T) []T {
 
-	v := make([]T, 0)
+	var v []T
 
 	for i := range s {
 
@@ -37,9 +37,10 @@ func RemoveElem[T comparable](s []T, e T) []T {
 }
 
 // RemoveIndex removes element with index i from s.
+// If s is nil, returns nil.
 func RemoveIndex[T any](s []T, i int) []T {
 
-	v := make([]T, 0)
+	var v []T
 
 	for n := range s {
 
@@ -54,10 +55,11 @@ func RemoveIndex[T any](s []T, i int) []T {
 }
 
 // Join joins elements of s with sep and return as a string.
+// If s is nil or zero-length, returns an empty string ("").
 func Join[T fmt.Stringer](s []T, sep string) string {
 
 	n := len(s)
-	v := ""
+	var v string
 
 	for i := range s {
 
@@ -83,7 +85,8 @@ func Contain[T comparable](s []T, e T) bool {
 	return false
 }
 
-// Strings convert a slice of T to a string slice. If s is nil, returns nil.
+// Strings convert a slice of T to a string slice.
+// If s is nil, returns nil.
 func Strings[T fmt.Stringer](s []T) []string {
 
 	var v []string
