@@ -97,3 +97,14 @@ func Strings[T fmt.Stringer](s []T) []string {
 
 	return v
 }
+
+// AppendUnique appends e to s if e is not in s.
+// If e is in s, than the returned slice is equal to s, i.e. return the same slice.
+func AppendUnique[T comparable](s []T, e T) []T {
+
+	if Contain(s, e) {
+		return s
+	}
+
+	return append(s, e)
+}

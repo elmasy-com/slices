@@ -140,3 +140,45 @@ func TestStringsUser(t *testing.T) {
 		t.Fatalf("FAILED!")
 	}
 }
+
+func TestAppendUniqueUser0(t *testing.T) {
+
+	a := []Test{{0, 0}, {1, 1}, {2, 2}, {3, 3}, {4, 4}}
+	b := AppendUnique(a, Test{i: 0, f: 0})
+
+	if len(b) != len(a) {
+		t.Fatalf("FAILED!")
+	}
+}
+
+// Test when s is nil
+func TestAppendUniqueUser1(t *testing.T) {
+
+	var c []Test
+	d := AppendUnique(c, Test{i: 0, f: 0})
+
+	if len(c) != 0 || len(d) != 1 {
+		t.Fatalf("FAILED!")
+	}
+}
+
+func TestAppendUniqueBuiltin0(t *testing.T) {
+
+	a := []int{0, 1, 2, 3, 4}
+	b := AppendUnique(a, 2)
+
+	if len(b) != len(a) {
+		t.Fatalf("FAILED!")
+	}
+}
+
+// Test when s is nil with a builtin type.
+func TestAppendUniqueBuiltin1(t *testing.T) {
+
+	var c []int
+	d := AppendUnique(c, 1)
+
+	if len(c) != 0 || len(d) != 1 {
+		t.Fatalf("FAILED!")
+	}
+}
