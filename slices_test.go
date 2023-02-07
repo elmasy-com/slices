@@ -82,10 +82,10 @@ func TestRemoveIndexUser(t *testing.T) {
 
 	a := []Test{{0, 0}, {1, 1}, {2, 2}, {3, 3}, {4, 4}}
 
-	b := RemoveIndex(a, 0)
+	b := RemoveIndex(a, 2)
 
-	c := Test{1, 1}
-	if b[0] != c {
+	c := Test{3, 3}
+	if b[2] != c {
 		t.Fatalf("FAILED!")
 	}
 }
@@ -94,11 +94,47 @@ func TestRemoveIndexBuiltin(t *testing.T) {
 
 	a := []int{0, 1, 2, 3, 4}
 
-	b := RemoveIndex(a, 0)
+	a = RemoveIndex(a, 2)
 
-	if b[0] != 1 {
+	if a == nil || a[0] != 0 || a[1] != 1 || a[2] != 3 || a[3] != 4 {
 		t.Fatalf("FAILED!")
 	}
+
+	a = RemoveIndex(a, 2)
+
+	if a == nil || a[0] != 0 || a[1] != 1 || a[2] != 4 {
+		t.Fatalf("FAILED: %#v", a)
+	}
+
+	a = RemoveIndex(a, 1)
+
+	if a == nil || a[0] != 0 || a[1] != 4 {
+		t.Fatalf("FAILED: %#v", a)
+	}
+
+	a = RemoveIndex(a, 1)
+
+	if a == nil || a[0] != 0 {
+		t.Fatalf("FAILED: %#v", a)
+	}
+
+	a = RemoveIndex(a, 0)
+
+	if a == nil || len(a) != 0 {
+		t.Fatalf("FAILED: %#v", a)
+	}
+}
+
+func BenchmarkRemoveIndexBuiltin(b *testing.B) {
+
+	a := []int{0, 1, 2, 3, 4}
+
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		RemoveIndex(a, 2)
+	}
+
 }
 
 func TestJoinUser(t *testing.T) {

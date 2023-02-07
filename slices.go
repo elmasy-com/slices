@@ -37,21 +37,30 @@ func RemoveElem[T comparable](s []T, e T) []T {
 }
 
 // RemoveIndex removes element with index i from s.
-// If s is nil, returns nil.
+// Returns nil, s is nil or empty, or i is not in range.
 func RemoveIndex[T any](s []T, i int) []T {
 
-	var v []T
+	ls := len(s)
 
-	for n := range s {
-
-		if n == i {
-			continue
-		}
-
-		v = append(v, s[n])
+	if s == nil || ls == 0 || i < 0 || i > ls-1 {
+		return nil
 	}
 
-	return v
+	// Remove the first elem
+	if i == 0 {
+		return s[i+1:]
+	}
+
+	// Remove the last elem
+	if i == ls-1 {
+		return s[:i]
+	}
+
+	//v := make([]T, 0, ls-1)
+
+	v := s[:i]
+
+	return append(v, s[i+1:]...)
 }
 
 // Join join elements of s with sep and return as a string.
