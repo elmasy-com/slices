@@ -116,7 +116,7 @@ func TestContainUser(t *testing.T) {
 
 	a := []Test{{0, 0}, {1, 1}, {2, 2}, {3, 3}, {4, 4}}
 
-	if !Contain(a, Test{0, 0}) {
+	if !Contains(a, Test{0, 0}) {
 		t.Fatalf("FAILED!")
 	}
 }
@@ -125,7 +125,7 @@ func TestContainBuiltin(t *testing.T) {
 
 	a := []int{0, 1, 2, 3, 4}
 
-	if !Contain(a, 0) {
+	if !Contains(a, 0) {
 		t.Fatalf("FAILED!")
 	}
 }

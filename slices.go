@@ -54,7 +54,7 @@ func RemoveIndex[T any](s []T, i int) []T {
 	return v
 }
 
-// Join joins elements of s with sep and return as a string.
+// Join join elements of s with sep and return as a string.
 // If s is nil or zero-length, returns an empty string ("").
 func Join[T fmt.Stringer](s []T, sep string) string {
 
@@ -73,8 +73,8 @@ func Join[T fmt.Stringer](s []T, sep string) string {
 	return v
 }
 
-// Contain returns if s contains e.
-func Contain[T comparable](s []T, e T) bool {
+// Contains returns true if s contains e.
+func Contains[T comparable](s []T, e T) bool {
 
 	for i := range s {
 		if s[i] == e {
@@ -102,7 +102,7 @@ func Strings[T fmt.Stringer](s []T) []string {
 // If e is in s, than the returned slice is equal to s, i.e. return the same slice.
 func AppendUnique[T comparable](s []T, e T) []T {
 
-	if Contain(s, e) {
+	if Contains(s, e) {
 		return s
 	}
 
