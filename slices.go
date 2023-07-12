@@ -94,6 +94,20 @@ func Contains[T comparable](s []T, e T) bool {
 	return false
 }
 
+// ContainsN returns the number of same element e in s.
+func ContainsN[T comparable](s []T, e T) int {
+
+	n := 0
+
+	for i := range s {
+		if s[i] == e {
+			n++
+		}
+	}
+
+	return n
+}
+
 // Strings convert a slice of T to a string slice.
 // If s is nil, returns nil.
 func Strings[T fmt.Stringer](s []T) []string {
@@ -116,4 +130,31 @@ func AppendUnique[T comparable](s []T, e T) []T {
 	}
 
 	return append(s, e)
+}
+
+// ContainsDuplicate returns whether slice s contains any duplicate element.
+func ContainsDuplicate[T comparable](s []T) bool {
+
+	for i := range s {
+		if ContainsN(s, s[i]) != 1 {
+			return true
+		}
+	}
+
+	return false
+}
+
+// RemoveDuplicates removes the duplicate elements from s.
+// The returned slice contains only unique elements.
+func RemoveDuplicates[T comparable](s []T) []T {
+
+	v := make([]T, 0)
+
+	for i := range s {
+		if !Contains(v, s[i]) {
+			v = append(v, s[i])
+		}
+	}
+
+	return v
 }

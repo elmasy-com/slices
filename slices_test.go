@@ -148,7 +148,7 @@ func TestJoinUser(t *testing.T) {
 	}
 }
 
-func TestContainUser(t *testing.T) {
+func TestContainsUser(t *testing.T) {
 
 	a := []Test{{0, 0}, {1, 1}, {2, 2}, {3, 3}, {4, 4}}
 
@@ -157,11 +157,29 @@ func TestContainUser(t *testing.T) {
 	}
 }
 
-func TestContainBuiltin(t *testing.T) {
+func TestContainsBuiltin(t *testing.T) {
 
 	a := []int{0, 1, 2, 3, 4}
 
 	if !Contains(a, 0) {
+		t.Fatalf("FAILED!")
+	}
+}
+
+func TestContainsNUser(t *testing.T) {
+
+	a := []Test{{0, 0}, {0, 0}, {1, 1}, {2, 2}, {3, 3}, {4, 4}}
+
+	if ContainsN(a, Test{0, 0}) != 2 {
+		t.Fatalf("FAILED!")
+	}
+}
+
+func TestContainsNBuiltin(t *testing.T) {
+
+	a := []int{0, 0, 1, 2, 3, 4}
+
+	if ContainsN(a, 0) != 2 {
 		t.Fatalf("FAILED!")
 	}
 }
@@ -215,6 +233,58 @@ func TestAppendUniqueBuiltin1(t *testing.T) {
 	d := AppendUnique(c, 1)
 
 	if len(c) != 0 || len(d) != 1 {
+		t.Fatalf("FAILED!")
+	}
+}
+
+func TestContainsDuplicateUser(t *testing.T) {
+
+	a := []Test{{0, 0}, {1, 1}, {2, 2}, {3, 3}, {4, 4}}
+
+	if ContainsDuplicate(a) {
+		t.Fatalf("FAILED!")
+	}
+
+	a = []Test{{0, 0}, {0, 0}, {1, 1}, {2, 2}, {3, 3}, {4, 4}}
+
+	if !ContainsDuplicate(a) {
+		t.Fatalf("FAILED!")
+	}
+}
+
+func TestContainsDuplicateBuiltin(t *testing.T) {
+
+	a := []int{0, 1, 2, 3, 4}
+
+	if ContainsDuplicate(a) {
+		t.Fatalf("FAILED!")
+	}
+
+	a = []int{0, 0, 1, 2, 3, 4}
+
+	if !ContainsDuplicate(a) {
+		t.Fatalf("FAILED!")
+	}
+}
+
+func TestRemoveDuplicatesUser(t *testing.T) {
+
+	a := []Test{{0, 0}, {0, 0}, {1, 1}, {2, 2}, {3, 3}, {4, 4}}
+
+	a = RemoveDuplicates(a)
+
+	if ContainsDuplicate(a) {
+		t.Fatalf("FAILED!")
+	}
+}
+
+func TestRemoveDuplicatesBuiltin(t *testing.T) {
+
+	a := []int{0, 0, 1, 2, 3, 4}
+
+	a = RemoveDuplicates(a)
+
+	if ContainsDuplicate(a) {
 		t.Fatalf("FAILED!")
 	}
 }
