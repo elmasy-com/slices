@@ -237,6 +237,48 @@ func TestAppendUniqueBuiltin1(t *testing.T) {
 	}
 }
 
+func TestAppendUniquesBuiltin0(t *testing.T) {
+
+	a := []int{0, 1, 2, 3, 4}
+	b := AppendUniques(a, []int{0, 1}...)
+
+	if len(b) != len(a) {
+		t.Fatalf("FAILED!")
+	}
+}
+
+// Test when s is nil with a builtin type.
+func TestAppendUniquesBuiltin1(t *testing.T) {
+
+	var a []int
+	b := AppendUniques(a, []int{0, 1}...)
+
+	if len(a) != 0 || len(b) != 2 {
+		t.Fatalf("FAILED!")
+	}
+}
+
+func TestAppendUniquesUser0(t *testing.T) {
+
+	a := []Test{{0, 0}, {1, 1}, {2, 2}, {3, 3}, {4, 4}}
+	b := AppendUniques(a, []Test{{0, 0}}...)
+
+	if len(b) != len(a) {
+		t.Fatalf("FAILED!")
+	}
+}
+
+// Test when s is nil
+func TestAppendUniquesUser1(t *testing.T) {
+
+	var a []Test
+	b := AppendUniques(a, Test{i: 0, f: 0})
+
+	if len(a) != 0 || len(b) != 1 {
+		t.Fatalf("FAILED!")
+	}
+}
+
 func TestContainsDuplicateUser(t *testing.T) {
 
 	a := []Test{{0, 0}, {1, 1}, {2, 2}, {3, 3}, {4, 4}}

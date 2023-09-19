@@ -132,6 +132,17 @@ func AppendUnique[T comparable](s []T, e T) []T {
 	return append(s, e)
 }
 
+// AppendUniques appends the elements of e to s if element of e is not in s.
+// If e is nil or empty, returns the same slice.
+func AppendUniques[T comparable](s []T, e ...T) []T {
+
+	for i := range e {
+		s = AppendUnique(s, e[i])
+	}
+
+	return s
+}
+
 // ContainsDuplicate returns whether slice s contains any duplicate element.
 func ContainsDuplicate[T comparable](s []T) bool {
 
